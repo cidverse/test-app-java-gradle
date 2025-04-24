@@ -174,6 +174,10 @@
                 {
                   "type": "report",
                   "format": "jacoco"
+                },
+                {
+                  "type": "report",
+                  "format": "junit"
                 }
               ]
             },
@@ -378,6 +382,68 @@
           },
           {
             "id": "5",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "container://ghcr.io/cidverse/cid-actions-go:0.1.0+zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
+            "id": "6",
             "name": "github-sarif-upload",
             "slug": "github-sarif-upload",
             "stage": "scan",
@@ -387,25 +453,29 @@
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of": [
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "access": {
               "network": [
@@ -444,7 +514,7 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           }
         ]
       },
@@ -481,8 +551,8 @@
         "step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.11.1",
-          "hash": "c6295a65d1254861815972266d5933fd6e532bdf"
+          "version": "v2.12.0",
+          "hash": "0634a2670c59f64b4a01f0f96f84700a4088b9f0"
         }
       },
       "ignore_files": [
@@ -667,6 +737,10 @@
                 {
                   "type": "report",
                   "format": "jacoco"
+                },
+                {
+                  "type": "report",
+                  "format": "junit"
                 }
               ]
             },
@@ -871,6 +945,68 @@
           },
           {
             "id": "5",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "container://ghcr.io/cidverse/cid-actions-go:0.1.0+zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
+            "id": "6",
             "name": "github-sarif-upload",
             "slug": "github-sarif-upload",
             "stage": "scan",
@@ -880,25 +1016,29 @@
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of": [
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "access": {
               "network": [
@@ -937,7 +1077,7 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           }
         ]
       },
@@ -974,8 +1114,8 @@
         "step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.11.1",
-          "hash": "c6295a65d1254861815972266d5933fd6e532bdf"
+          "version": "v2.12.0",
+          "hash": "0634a2670c59f64b4a01f0f96f84700a4088b9f0"
         }
       },
       "ignore_files": [
@@ -1165,6 +1305,10 @@
                 {
                   "type": "report",
                   "format": "jacoco"
+                },
+                {
+                  "type": "report",
+                  "format": "junit"
                 }
               ]
             },
@@ -1369,6 +1513,68 @@
           },
           {
             "id": "5",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "container://ghcr.io/cidverse/cid-actions-go:0.1.0+zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
+            "id": "6",
             "name": "github-sarif-upload",
             "slug": "github-sarif-upload",
             "stage": "scan",
@@ -1378,25 +1584,29 @@
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of": [
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "access": {
               "network": [
@@ -1435,10 +1645,10 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           },
           {
-            "id": "6",
+            "id": "7",
             "name": "changelog-generate",
             "slug": "changelog-generate",
             "stage": "publish",
@@ -1450,7 +1660,8 @@
               "gradle-build-test-app-java-gradle",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "github-sarif-upload",
@@ -1458,7 +1669,8 @@
               "gradle-build [test-app-java-gradle]",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "access": {
               "network": [
@@ -1496,10 +1708,10 @@
                 }
               ]
             },
-            "order": 6
+            "order": 7
           },
           {
-            "id": "7",
+            "id": "8",
             "name": "github-release-publish",
             "slug": "github-release-publish",
             "stage": "publish",
@@ -1512,7 +1724,8 @@
               "gradle-build-test-app-java-gradle",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "changelog-generate",
@@ -1521,7 +1734,8 @@
               "gradle-build [test-app-java-gradle]",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of": [
               "changelog-generate"
@@ -1568,7 +1782,7 @@
               ]
             },
             "outputs": {},
-            "order": 7
+            "order": 8
           }
         ]
       },
@@ -1605,8 +1819,8 @@
         "step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.11.1",
-          "hash": "c6295a65d1254861815972266d5933fd6e532bdf"
+          "version": "v2.12.0",
+          "hash": "0634a2670c59f64b4a01f0f96f84700a4088b9f0"
         }
       },
       "ignore_files": [
@@ -1794,6 +2008,10 @@
                 {
                   "type": "report",
                   "format": "jacoco"
+                },
+                {
+                  "type": "report",
+                  "format": "junit"
                 }
               ]
             },
@@ -1998,6 +2216,68 @@
           },
           {
             "id": "5",
+            "name": "zizmor-scan",
+            "slug": "zizmor-scan",
+            "stage": "scan",
+            "scope": "project",
+            "action": "container://ghcr.io/cidverse/cid-actions-go:0.1.0+zizmor-scan",
+            "access": {
+              "env": [
+                {
+                  "name": "GH_HOSTNAME",
+                  "description": "GH_HOSTNAME is required for some online audits"
+                },
+                {
+                  "name": "GH_TOKEN",
+                  "description": "GH_TOKEN is required for some online audits"
+                }
+              ],
+              "executables": [
+                {
+                  "name": "zizmor",
+                  "constraint": "=\u003e 1.4.1"
+                }
+              ],
+              "network": [
+                {
+                  "host": "github.com:443"
+                },
+                {
+                  "host": "api.github.com:443"
+                },
+                {
+                  "host": "codeload.github.com:443"
+                },
+                {
+                  "host": "uploads.github.com:443"
+                },
+                {
+                  "host": "objects.githubusercontent.com:443"
+                },
+                {
+                  "host": "raw.githubusercontent.com:443"
+                },
+                {
+                  "host": "ghcr.io:443"
+                },
+                {
+                  "host": "pkg-containers.githubusercontent.com:443"
+                }
+              ]
+            },
+            "inputs": {},
+            "outputs": {
+              "artifacts": [
+                {
+                  "type": "report",
+                  "format": "sarif"
+                }
+              ]
+            },
+            "order": 5
+          },
+          {
+            "id": "6",
             "name": "github-sarif-upload",
             "slug": "github-sarif-upload",
             "stage": "scan",
@@ -2007,25 +2287,29 @@
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "run-after-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of": [
               "gitleaks-scan",
               "gradle-test-test-app-java-gradle",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "uses-output-of-by-name": [
               "gitleaks-scan",
               "gradle-test [test-app-java-gradle]",
               "semgrep-scan",
-              "trivyfs-scan"
+              "trivyfs-scan",
+              "zizmor-scan"
             ],
             "access": {
               "network": [
@@ -2064,7 +2348,7 @@
               ]
             },
             "outputs": {},
-            "order": 5
+            "order": 6
           }
         ]
       },
@@ -2101,8 +2385,8 @@
         "step-security/harden-runner": {
           "id": "step-security/harden-runner",
           "type": "github-action",
-          "version": "v2.11.1",
-          "hash": "c6295a65d1254861815972266d5933fd6e532bdf"
+          "version": "v2.12.0",
+          "hash": "0634a2670c59f64b4a01f0f96f84700a4088b9f0"
         }
       },
       "ignore_files": [
